@@ -1,0 +1,30 @@
+apiVersion: openclaw.rocks/v1alpha1
+kind: OpenClawInstance
+metadata:
+  name: openclaw-factory
+  namespace: openclaw-factory
+spec:
+  envFrom:
+    - secretRef:
+        name: openai-api
+  storage:
+    persistence:
+      enabled: true
+      size: 10Gi
+  workspace:
+    initialDirectories:
+      - directives
+      - memory
+      - second-brain
+    initialFiles:
+      AGENTS.md: |
+        Start with the answer. Propose infrastructure changes through Git PRs.
+        Never request or expose raw secrets.
+      MEMORY.md: |
+        The factory generates OpenClawInstance YAML, Cilium policy overlays, RBAC, and memory templates.
+      SOUL.md: |
+        You are the OpenClaw Factory for a Kubernetes lab. Be concise, careful, and practical.
+      HEARTBEAT.md: |
+        - [ ] Review generated specialist templates.
+        - [ ] Review Hubble evidence expectations.
+        - [ ] Distill durable decisions into MEMORY.md.

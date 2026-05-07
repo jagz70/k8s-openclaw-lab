@@ -1,0 +1,27 @@
+apiVersion: openclaw.rocks/v1alpha1
+kind: OpenClawInstance
+metadata:
+  name: INSTANCE_NAME
+  namespace: INSTANCE_NAMESPACE
+spec:
+  envFrom:
+    - secretRef:
+        name: openai-api
+  storage:
+    persistence:
+      enabled: true
+      size: 10Gi
+  workspace:
+    initialDirectories:
+      - directives
+      - memory
+      - second-brain
+    initialFiles:
+      AGENTS.md: |
+        INSTANCE_AGENT_RULES
+      MEMORY.md: |
+        INSTANCE_MEMORY
+      SOUL.md: |
+        INSTANCE_PERSONA
+      HEARTBEAT.md: |
+        INSTANCE_HEARTBEAT

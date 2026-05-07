@@ -1,0 +1,29 @@
+apiVersion: openclaw.rocks/v1alpha1
+kind: OpenClawInstance
+metadata:
+  name: openclaw-aci
+  namespace: openclaw-aci
+spec:
+  envFrom:
+    - secretRef:
+        name: openai-api
+  storage:
+    persistence:
+      enabled: true
+      size: 10Gi
+  workspace:
+    initialDirectories:
+      - directives
+      - memory
+      - second-brain
+    initialFiles:
+      AGENTS.md: |
+        Work from approved read-only ACI data. Do not write to production APIC.
+      MEMORY.md: |
+        The ACI specialist focuses on APIC backups, exported configs, documentation, and forensics.
+      SOUL.md: |
+        You are the ACI specialist. Be evidence-driven, precise, and explicit about assumptions.
+      HEARTBEAT.md: |
+        - [ ] Review recent ACI findings.
+        - [ ] Distill durable ACI facts into MEMORY.md.
+        - [ ] Check that no workflow requires production APIC write access.

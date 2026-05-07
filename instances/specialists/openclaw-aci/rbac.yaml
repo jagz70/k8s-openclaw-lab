@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: openclaw-aci
+  namespace: openclaw-aci
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: openclaw-aci-read
+  namespace: openclaw-aci
+rules:
+  - apiGroups: [""]
+    resources: ["configmaps", "events", "pods"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: openclaw-aci-read
+  namespace: openclaw-aci
+subjects:
+  - kind: ServiceAccount
+    name: openclaw-aci
+    namespace: openclaw-aci
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: openclaw-aci-read

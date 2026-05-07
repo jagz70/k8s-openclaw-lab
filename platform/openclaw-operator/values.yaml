@@ -1,0 +1,2 @@
+leaderElection:
+  enabled: true

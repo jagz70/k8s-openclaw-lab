@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: INSTANCE_NAME
+  namespace: INSTANCE_NAMESPACE
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: INSTANCE_NAME-read
+  namespace: INSTANCE_NAMESPACE
+rules:
+  - apiGroups: [""]
+    resources: ["configmaps", "events", "pods", "services"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: INSTANCE_NAME-read
+  namespace: INSTANCE_NAMESPACE
+subjects:
+  - kind: ServiceAccount
+    name: INSTANCE_NAME
+    namespace: INSTANCE_NAMESPACE
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: INSTANCE_NAME-read
