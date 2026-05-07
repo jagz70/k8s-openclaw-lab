@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openclaw-aci
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jagz70/k8s-openclaw-lab.git
+    targetRevision: main
+    path: instances/specialists/openclaw-aci
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: openclaw-aci
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
