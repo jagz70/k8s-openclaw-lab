@@ -49,3 +49,5 @@ Repeat in specialist namespaces only when a specialist needs direct LLM access.
 The scripts are intentionally small and inspectable. They assume `docker`, `kind`, `kubectl`, `helm`, and the `cilium` CLI are installed.
 
 For host setup on this machine, see `docs/host-prep.md`.
+
+For local UI and gateway access, see `docs/access.md`.
