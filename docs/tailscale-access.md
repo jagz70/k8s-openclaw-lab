@@ -12,23 +12,27 @@ On the lab rig:
 
 The script starts localhost-only Kubernetes port-forwards for Tailscale Serve to proxy.
 
-Current URLs on this rig:
+Preferred URLs:
 
 ```text
-Argo CD:           https://k8s-openclaw-rig.taild480a.ts.net:18080
-OpenClaw Factory:  https://k8s-openclaw-rig.taild480a.ts.net:18789
-OpenClaw ACI:      https://k8s-openclaw-rig.taild480a.ts.net:18790
+Argo CD:           https://argocd.taild480a.ts.net
+OpenClaw Factory:  https://openclaw-factory.taild480a.ts.net
+OpenClaw ACI:      https://openclaw-aci.taild480a.ts.net
 ```
+
+Use separate hostnames for Factory and ACI. Do not use different ports on the same hostname for both OpenClaw instances; browser cookies are scoped by hostname and can cause gateway token collisions.
 
 ## Enable HTTPS
 
 Tailscale Serve configuration requires root/operator permissions on the rig:
 
 ```bash
-sudo tailscale serve --bg --https 18080 http://127.0.0.1:18080
-sudo tailscale serve --bg --https 18789 http://127.0.0.1:18789
-sudo tailscale serve --bg --https 18790 http://127.0.0.1:18790
+sudo tailscale serve --bg --service=svc:argocd --https=443 http://127.0.0.1:18080
+sudo tailscale serve --bg --service=svc:openclaw-factory --https=443 http://127.0.0.1:18789
+sudo tailscale serve --bg --service=svc:openclaw-aci --https=443 http://127.0.0.1:18790
 ```
+
+Tailscale Services may require approval in the Tailscale admin console before their MagicDNS names become reachable.
 
 Check Serve status:
 
@@ -78,5 +82,7 @@ Logs and PID files are stored under:
 To remove Tailscale Serve HTTPS configuration:
 
 ```bash
-sudo tailscale serve reset
+sudo tailscale serve --service=svc:argocd --https=443 off
+sudo tailscale serve --service=svc:openclaw-factory --https=443 off
+sudo tailscale serve --service=svc:openclaw-aci --https=443 off
 ```

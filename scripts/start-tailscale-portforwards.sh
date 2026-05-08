@@ -6,7 +6,6 @@ if ! command -v tailscale >/dev/null 2>&1; then
   exit 1
 fi
 
-TAILSCALE_DNS="${TAILSCALE_DNS:-$(tailscale status --json | sed -n 's/.*"DNSName": "\([^"]*\)".*/\1/p' | head -n 1 | sed 's/[.]$//')}"
 RUN_DIR="${RUN_DIR:-/tmp/openclaw-lab-portforwards}"
 mkdir -p "$RUN_DIR"
 
@@ -34,13 +33,13 @@ sleep 1
 
 echo
 echo "Tailscale HTTPS URLs:"
-echo "  Argo CD:           https://$TAILSCALE_DNS:18080"
-echo "  OpenClaw Factory:  https://$TAILSCALE_DNS:18789"
-echo "  OpenClaw ACI:      https://$TAILSCALE_DNS:18790"
+echo "  Argo CD:           https://argocd.taild480a.ts.net"
+echo "  OpenClaw Factory:  https://openclaw-factory.taild480a.ts.net"
+echo "  OpenClaw ACI:      https://openclaw-aci.taild480a.ts.net"
 echo
 echo "Logs: $RUN_DIR"
 echo
 echo "Enable HTTPS with:"
-echo "  sudo tailscale serve --bg --https 18080 http://127.0.0.1:18080"
-echo "  sudo tailscale serve --bg --https 18789 http://127.0.0.1:18789"
-echo "  sudo tailscale serve --bg --https 18790 http://127.0.0.1:18790"
+echo "  sudo tailscale serve --bg --service=svc:argocd --https=443 http://127.0.0.1:18080"
+echo "  sudo tailscale serve --bg --service=svc:openclaw-factory --https=443 http://127.0.0.1:18789"
+echo "  sudo tailscale serve --bg --service=svc:openclaw-aci --https=443 http://127.0.0.1:18790"
