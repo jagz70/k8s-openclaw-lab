@@ -4,6 +4,11 @@ metadata:
   name: openclaw-factory
   namespace: openclaw-factory
 spec:
+  gateway:
+    controlUiOrigins:
+      - http://127.0.0.1:18789
+      - http://localhost:18789
+      - http://100.76.12.60:18789
   envFrom:
     - secretRef:
         name: openai-api
