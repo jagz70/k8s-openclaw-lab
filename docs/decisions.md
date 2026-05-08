@@ -11,6 +11,7 @@
 | GitOps | Argo CD |
 | OpenClaw install | OpenClaw Operator |
 | Secrets | Manual Kubernetes Secrets, excluded from Git |
+| Laptop access | Caddy reverse proxy with its local CA and distinct hostnames |
 | LLM provider | OpenAI API through Kubernetes Secret |
 | QMD | Workstation-only first |
 | First specialist | openclaw-aci |

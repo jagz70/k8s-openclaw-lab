@@ -8,6 +8,8 @@ This host is Ubuntu 22.04 x86_64. The lab needs:
 - Helm
 - Cilium CLI
 
+The local HTTPS helper uses Caddy's built-in local CA and exports the root cert for laptop trust.
+
 Run this locally from the repo root:
 
 ```bash
@@ -30,3 +32,5 @@ Then start the lab:
 ./clusters/lab/bootstrap-cluster.sh
 ./clusters/lab/install-cilium.sh
 ```
+
+For laptop HTTPS access, see `docs/local-https.md`.
