@@ -10,45 +10,17 @@ On the lab rig:
 ./scripts/start-tailscale-portforwards.sh
 ```
 
-The script starts localhost-only Kubernetes port-forwards for Tailscale Serve to proxy.
+The script binds the port-forwards to the rig's Tailscale IPv4 address.
 
-Preferred URLs:
-
-```text
-Argo CD:           https://argocd.taild480a.ts.net
-OpenClaw Factory:  https://openclaw-factory.taild480a.ts.net
-OpenClaw ACI:      https://openclaw-aci.taild480a.ts.net
-```
-
-Use separate hostnames for Factory and ACI. Do not use different ports on the same hostname for both OpenClaw instances; browser cookies are scoped by hostname and can cause gateway token collisions.
-
-## Enable HTTPS
-
-Tailscale Serve configuration requires root/operator permissions on the rig. Tailscale Services also require the rig to be a tagged node before it can host `svc:*` endpoints.
-
-In the Tailscale admin console, allow this node to advertise a service-hosting tag such as:
+Current URLs:
 
 ```text
-tag:openclaw-lab
+Argo CD:           http://100.76.12.60:18080
+OpenClaw Factory:  http://100.76.12.60:18789
+OpenClaw ACI:      http://100.76.12.60:18790
 ```
 
-Then on the rig:
-
-```bash
-sudo tailscale up --advertise-tags=tag:openclaw-lab
-```
-
-Approve the tag in the Tailscale admin console if prompted.
-
-After the node is tagged, configure the three HTTPS service hostnames:
-
-```bash
-sudo tailscale serve --bg --service=svc:argocd --https=443 http://127.0.0.1:18080
-sudo tailscale serve --bg --service=svc:openclaw-factory --https=443 http://127.0.0.1:18789
-sudo tailscale serve --bg --service=svc:openclaw-aci --https=443 http://127.0.0.1:18790
-```
-
-Tailscale Services may require approval in the Tailscale admin console before their MagicDNS names become reachable.
+Use separate browser profiles or private windows if you need to avoid stale token cookies.
 
 Check Serve status:
 
@@ -98,7 +70,5 @@ Logs and PID files are stored under:
 To remove Tailscale Serve HTTPS configuration:
 
 ```bash
-sudo tailscale serve --service=svc:argocd --https=443 off
-sudo tailscale serve --service=svc:openclaw-factory --https=443 off
-sudo tailscale serve --service=svc:openclaw-aci --https=443 off
+tailscale serve reset
 ```

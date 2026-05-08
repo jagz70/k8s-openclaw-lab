@@ -9,10 +9,6 @@ spec:
       - http://127.0.0.1:18790
       - http://localhost:18790
       - http://100.76.12.60:18790
-      - https://k8s-openclaw-rig.taild480a.ts.net:18790
-      - https://k8s-openclaw-rig:18790
-      - https://openclaw-aci.taild480a.ts.net
-      - https://openclaw-aci
   envFrom:
     - secretRef:
         name: openai-api
