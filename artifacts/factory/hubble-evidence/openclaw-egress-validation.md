@@ -44,9 +44,18 @@ Cilium status reported:
 
 The standalone `hubble` CLI is not installed on the host. Flow screenshots or CLI output should be added after using Hubble UI or installing the CLI.
 
+## Command-Line Flow Evidence
+
+See `cilium-monitor-flow-evidence-2026-05-08.md` for Cilium monitor evidence showing:
+
+- DNS egress redirected through Cilium DNS handling.
+- HTTPS egress allowed for provider endpoints.
+- `169.254.169.254:80` denied and dropped by policy.
+- `100.100.100.200:80` denied and dropped by policy.
+
 ## Next Evidence To Capture
 
-- Hubble flow for allowed DNS and HTTPS egress to `api.openai.com`.
-- Hubble flow for allowed HTTPS egress to `api.github.com`.
-- Hubble drop/deny flow for `169.254.169.254`.
-- Hubble drop/deny flow for `100.100.100.200`.
+- Hubble UI screenshots or standalone Hubble CLI output for allowed DNS and HTTPS egress to `api.openai.com`.
+- Hubble UI screenshots or standalone Hubble CLI output for allowed HTTPS egress to `api.github.com`.
+- Hubble UI screenshots or standalone Hubble CLI output for drop/deny flows to `169.254.169.254`.
+- Hubble UI screenshots or standalone Hubble CLI output for drop/deny flows to `100.100.100.200`.
