@@ -51,3 +51,5 @@ The scripts are intentionally small and inspectable. They assume `docker`, `kind
 For host setup on this machine, see `docs/host-prep.md`.
 
 For local UI and gateway access, see `docs/access.md`.
+
+For laptop access over Tailscale, see `docs/tailscale-access.md`.
