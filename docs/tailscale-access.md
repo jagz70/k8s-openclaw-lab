@@ -24,7 +24,23 @@ Use separate hostnames for Factory and ACI. Do not use different ports on the sa
 
 ## Enable HTTPS
 
-Tailscale Serve configuration requires root/operator permissions on the rig:
+Tailscale Serve configuration requires root/operator permissions on the rig. Tailscale Services also require the rig to be a tagged node before it can host `svc:*` endpoints.
+
+In the Tailscale admin console, allow this node to advertise a service-hosting tag such as:
+
+```text
+tag:openclaw-lab
+```
+
+Then on the rig:
+
+```bash
+sudo tailscale up --advertise-tags=tag:openclaw-lab
+```
+
+Approve the tag in the Tailscale admin console if prompted.
+
+After the node is tagged, configure the three HTTPS service hostnames:
 
 ```bash
 sudo tailscale serve --bg --service=svc:argocd --https=443 http://127.0.0.1:18080
