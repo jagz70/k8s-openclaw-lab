@@ -15,9 +15,9 @@ The script binds the port-forwards to the rig's Tailscale IPv4 address.
 Current URLs:
 
 ```text
-Argo CD:           http://100.76.12.60:18080
-OpenClaw Factory:  http://100.76.12.60:18789
-OpenClaw ACI:      http://100.76.12.60:18790
+Argo CD:           https://k8s-openclaw-rig.taild480a.ts.net:18080
+OpenClaw Factory:  https://k8s-openclaw-rig.taild480a.ts.net:18789
+OpenClaw ACI:      https://k8s-openclaw-rig.taild480a.ts.net:18790
 ```
 
 Use separate browser profiles or private windows if you need to avoid stale token cookies.

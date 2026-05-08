@@ -33,8 +33,8 @@ sleep 1
 
 echo
 echo "Tailscale URLs:"
-echo "  Argo CD:           http://100.76.12.60:18080"
-echo "  OpenClaw Factory:  http://100.76.12.60:18789"
-echo "  OpenClaw ACI:      http://100.76.12.60:18790"
+echo "  Argo CD:           https://k8s-openclaw-rig.taild480a.ts.net:18080"
+echo "  OpenClaw Factory:  https://k8s-openclaw-rig.taild480a.ts.net:18789"
+echo "  OpenClaw ACI:      https://k8s-openclaw-rig.taild480a.ts.net:18790"
 echo
 echo "Logs: $RUN_DIR"
