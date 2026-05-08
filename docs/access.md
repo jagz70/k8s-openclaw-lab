@@ -7,13 +7,13 @@ Services are private `ClusterIP` services. Use `kubectl port-forward` from the l
 Forward the Argo CD API/UI:
 
 ```bash
-kubectl -n argocd port-forward svc/argocd-server 8080:443
+kubectl -n argocd port-forward svc/argocd-server 18080:80
 ```
 
 Open:
 
 ```text
-https://localhost:8080
+http://localhost:18080
 ```
 
 Initial username:
