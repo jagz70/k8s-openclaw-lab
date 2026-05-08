@@ -16,6 +16,8 @@ OpenClaw workloads:
 - `openclaw-factory` is `Running`, `Ready=True`; pod is `3/3 Running`.
 - `openclaw-aci` is `Running`, `Ready=True`; pod is `3/3 Running`.
 - Both services have endpoints through the gateway proxy.
+- Both gateways return HTTP `200` for `/`, `/healthz`, and `/readyz`.
+- The canvas route `/__openclaw__/canvas/` returns HTTP `401` without auth, as expected.
 
 Workspace seed files:
 
@@ -34,6 +36,12 @@ Local access:
 - `kubectl -n argocd port-forward svc/argocd-server 18080:80` returned HTTP `200` at `http://127.0.0.1:18080`.
 - `kubectl -n openclaw-factory port-forward svc/openclaw-factory 18789:18789` returned HTTP `200` at `http://127.0.0.1:18789/healthz`.
 - `kubectl -n openclaw-aci port-forward svc/openclaw-aci 18790:18789` returned HTTP `200` at `http://127.0.0.1:18790/healthz`.
+
+Persistence:
+
+- A non-secret `PERSISTENCE_CHECK.md` marker written to the factory workspace survived deletion and recreation of `pod/openclaw-factory-0`.
+- A non-secret `PERSISTENCE_CHECK.md` marker written to the ACI workspace survived deletion and recreation of `pod/openclaw-aci-0`.
+- Both PVCs remained `Bound` and both pods returned to `3/3 Running`.
 
 Notes:
 
